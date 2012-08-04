@@ -110,7 +110,8 @@ local get_reply = function(self)
 end
 
 --- Private: connection:send_packet() send packet to AMI
--- @param command command to send to protocol (Action, Response, or Event)
+-- @param self connection object
+-- @param keyword command to send to protocol (Action, Response, or Event)
 -- @param action asterisk command
 -- @param data a table of parameters
 local send_packet = function(self, keyword, action, data)
@@ -143,7 +144,7 @@ local send_packet = function(self, keyword, action, data)
 end
 
 --- connection:command() send "action" packet to AMI
--- @param command command to send to protocol (Action, Response, or Event)
+-- @param self connection object
 -- @param action asterisk command
 -- @param data a table of parameters
 local command = function(self, action, data)
