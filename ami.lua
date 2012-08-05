@@ -15,6 +15,7 @@ local type, assert = type, assert
 
 --------------------------------------------------------------------------------
 
+-- @field DEFAULT_AMI_PORT  default TCP port number for AMI
 local DEFAULT_AMI_PORT = 5038
 
 --------------------------------------------------------------------------------
