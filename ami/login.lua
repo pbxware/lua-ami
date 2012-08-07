@@ -1,7 +1,8 @@
 --------------------------------------------------------------------------------
--- login.lua: implementation of AMI protocol authorization sequence
--- This file is a part of Lua-AMI library
--- Copyright (c) Lua-AMI authors (see file `COPYRIGHT` for the license)
+--- implementation of AMI protocol authorization sequence
+-- @module ami.login
+-- @license MIT/X11
+-- @copyright Lua-AMI authors (see file `COPYRIGHT`)
 --------------------------------------------------------------------------------
 
 local md5 = require "md5"

@@ -1,7 +1,8 @@
 --------------------------------------------------------------------------------
--- utils.lua: utility functions
--- This file is a part of Lua-AMI library
--- Copyright (c) Lua-AMI authors (see file `COPYRIGHT` for the license)
+--- utility functions
+-- @module ami.utils
+-- @license MIT/X11
+-- @copyright Lua-AMI authors (see file `COPYRIGHT`)
 --------------------------------------------------------------------------------
 -- This module is part of implementation, not API
 --------------------------------------------------------------------------------

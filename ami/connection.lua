@@ -1,7 +1,8 @@
 --------------------------------------------------------------------------------
--- connection.lua: Low-level connection object
--- This file is a part of Lua-AMI library
--- Copyright (c) Lua-AMI authors (see file `COPYRIGHT` for the license)
+--- Low-level connection object
+-- @module ami.connection
+-- @license MIT/X11
+-- @copyright Lua-AMI authors (see file `COPYRIGHT`)
 --------------------------------------------------------------------------------
 
 local socket = require "socket"
