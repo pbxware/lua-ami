@@ -4,6 +4,7 @@
 -- Copyright (c) Lua-AMI authors (see file `COPYRIGHT` for the license)
 --------------------------------------------------------------------------------
 -- Little tool, to accsess "live" asterisk: send originate command
+-- @script interactive-test.lua
 --------------------------------------------------------------------------------
 
 local make_ami_manager = require "ami".make_ami_manager
