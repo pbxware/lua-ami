@@ -4,3 +4,4 @@ Lua-AMI: Lua library to talk with Asterisk by AMI protocol
 Copyright (C) 2012 Lua-AMI authors
 
 See file 'COPYRIGHT' for the license.
+See file 'doc/index.html' for documentation
