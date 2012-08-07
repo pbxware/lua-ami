@@ -1,7 +1,8 @@
 --------------------------------------------------------------------------------
--- ami.lua: Lua module to talk with Asterisk by AMI protocol
--- This file is a part of Lua-AMI library
--- Copyright (c) Lua-AMI authors (see file `COPYRIGHT` for the license)
+--- Lua module to talk with Asterisk by AMI protocol.
+-- @module ami
+-- @license MIT/X11
+-- @copyright Lua-AMI authors (see file `COPYRIGHT` for the license)
 --------------------------------------------------------------------------------
 
 local uuid = require "uuid"
