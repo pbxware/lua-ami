@@ -32,6 +32,8 @@
 
 <h2>Contents</h2>
 <ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Class_connection">Class connection</a></li>
 </ul>
 
 
@@ -56,11 +58,111 @@
 <p>Low-level connection object</p>
 <p></p>
 
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#make_connection">make_connection&nbsp;(host, port, timeout, logger)</a></td>
+	<td class="summary">Create a low-level connection object</td>
+	</tr>
+</table>
+<h2><a href="#Class_connection">Class connection</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#connection:command">connection:command&nbsp;(self, action, data)</a></td>
+	<td class="summary">connection:command() send "action" packet to AMI</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#connection:get_protocol_version">connection:get_protocol_version&nbsp;()</a></td>
+	<td class="summary">Return version of protocol</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#connection:close">connection:close&nbsp;()</a></td>
+	<td class="summary">close connection</td>
+	</tr>
+</table>
 
 <br/>
 <br/>
 
 
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "make_connection"></a>
+    <strong>make_connection&nbsp;(host, port, timeout, logger)</strong>
+    </dt>
+    <dd>
+    Create a low-level connection object
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>host</em></code>:  host</li>
+       <li><code><em>port</em></code>:  port</li>
+       <li><code><em>timeout</em></code>:  optional connection timeout</li>
+       <li><code><em>logger</em></code>:   optional logger (function with print semantic)</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <a href="../modules/ami.connection.html#ami.connection">?que</a>
+    </ol>
+
+
+</dd>
+</dl>
+    <h2><a name="Class_connection"></a>Class connection</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "connection:command"></a>
+    <strong>connection:command&nbsp;(self, action, data)</strong>
+    </dt>
+    <dd>
+    connection:command() send "action" packet to AMI
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>self</em></code>:  <a href="../modules/ami.connection.html#ami.connection">?que</a></li>
+       <li><code><em>action</em></code>:  asterisk command</li>
+       <li><code><em>data</em></code>:  a table of parameters</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "connection:get_protocol_version"></a>
+    <strong>connection:get_protocol_version&nbsp;()</strong>
+    </dt>
+    <dd>
+    Return version of protocol
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>protocol version or nil, if error occured</li>
+        <li>nil or error string, if error occured</li>
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "connection:close"></a>
+    <strong>connection:close&nbsp;()</strong>
+    </dt>
+    <dd>
+    close connection
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
