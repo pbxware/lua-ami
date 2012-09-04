@@ -21,6 +21,8 @@ local DEFAULT_AMI_PORT = 5038
 
 --------------------------------------------------------------------------------
 
+--- Create amu manager
+-- @factory ami_manager
 local make_ami_manager
 do
   local generate_action_id = function()
@@ -29,7 +31,6 @@ do
 
   --- Wait for specified reply
   --   all other events ignored
-  -- @param self AMI manager object
   -- @param action_id ID of reply
   -- @return response structure from AMI or nil, if error occured
   -- @return error string, if error occured, otherwise nil
@@ -53,7 +54,6 @@ do
   end
 
   --- Logoff from AMI interface
-  -- @param self AMO object
   -- @return
   local logoff = function(self)
     assert(type(self) == "table", "self is not a table")
@@ -80,7 +80,6 @@ do
   end
 
   --- Originate call from asterisk
-  -- @param self AMI object
   -- @param phone_number
   -- @return result message from asterisk, or nil if error occured
   -- @return error message if error occured, nil otherwise
@@ -123,7 +122,6 @@ do
   end
 
   --- Private: connect and authorize on demand
-  -- @param self AMI manager object
   -- @return AMI connection object
   local establish_connection = function(self)
     local config = self.config_
@@ -153,7 +151,6 @@ do
   end
 
   --- connect and authorize on demand
-  -- @param self AMI manager object
   -- @return AMI connection object
   local get_connection = function(self)
     if not self.conn_ then
@@ -163,6 +160,7 @@ do
   end
 
   --- Make AMI manager object
+  --  @constructor
   --  @param config -- table with configuration values
   --  @field host  host to connect
   --  @field port  port to connect
