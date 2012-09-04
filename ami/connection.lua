@@ -145,73 +145,76 @@ local send_packet = function(self, keyword, action, data)
     )
 end
 
---- connection:command() send "action" packet to AMI
--- @param self connection object
--- @param action asterisk command
--- @param data a table of parameters
-local command = function(self, action, data)
-  assert(type(self) == "table", "self is not a connection object")
-  assert(type(action) == "string", "action is not a string")
-  assert(type(data) == "table", "data is not a table")
-
-  return send_packet(self, "Action", action, data)
-end
-
---- close connection
-local close = function(self)
-  assert(type(self) == "table", "self is not a connection object")
-
-  self.socket_:close()
-end
-
---- Return version of protocol
--- @param self connection object
--- @return protocol version or nil, if error occured
--- @return nil or error string, if error occured
-local get_protocol_version = function(self)
-  assert(type(self) == "table", "self is not a connection object")
-
-  local sock, err = get_connection(self)
-  if not sock then
-    return nil, err
-  end
-
-  return self.protocol_version_
-end
-
 --- Create a low-level connection object
--- @param host host
--- @param port port
--- @param timeout optional connection timeout
--- @param logger  optional logger (function with print semantic)
--- @return a connection object
-local make_connection = function(host, port, timeout, logger)
-  assert(type(host) == "string", "host is not a string")
-  assert(type(port) == "number", "port is not a number")
+-- @factory connection
+local make_connection
+do
+  --- connection:command() send "action" packet to AMI
+  -- @param action asterisk command
+  -- @param data a table of parameters
+  local command = function(self, action, data)
+    assert(type(self) == "table", "self is not a connection object")
+    assert(type(action) == "string", "action is not a string")
+    assert(type(data) == "table", "data is not a table")
 
-  if timeout ~= nil then
-    assert(type(timeout) == "number", "timeout is not a number or nil")
-  end
-  if logger ~= nil then
-    assert(type(logger) == "function", "logger is not a function or nil")
+    return send_packet(self, "Action", action, data)
   end
 
-  return
-  {
-    -- methods
-    get_protocol_version = get_protocol_version;
-    command = command;
-    get_reply = get_reply;
-    close = close;
+  --- Return version of protocol
+  -- @return protocol version or nil, if error occured
+  -- @return nil or error string, if error occured
+  local get_protocol_version = function(self)
+    assert(type(self) == "table", "self is not a connection object")
 
-    -- Private fields
-    socket_ = nil;
-    protocol_version_ = nil;
-    host_ = host;
-    port_ = port;
-    timeout_ = timeout;
-    logger_ = logger;
-  }
+    local sock, err = get_connection(self)
+    if not sock then
+      return nil, err
+    end
+
+    return self.protocol_version_
+  end
+
+  --- close connection
+  local close = function(self)
+    assert(type(self) == "table", "self is not a connection object")
+
+    self.socket_:close()
+  end
+
+  --- Create a low-level connection object
+  -- @constructor
+  -- @param host host
+  -- @param port port
+  -- @param timeout optional connection timeout
+  -- @param logger  optional logger (function with print semantic)
+  make_connection = function(host, port, timeout, logger)
+    assert(type(host) == "string", "host is not a string")
+    assert(type(port) == "number", "port is not a number")
+
+    if timeout ~= nil then
+      assert(type(timeout) == "number", "timeout is not a number or nil")
+    end
+    if logger ~= nil then
+      assert(type(logger) == "function", "logger is not a function or nil")
+    end
+
+    return
+    {
+      -- methods
+      get_protocol_version = get_protocol_version;
+      command = command;
+      get_reply = get_reply;
+      close = close;
+
+      -- Private fields
+      socket_ = nil;
+      protocol_version_ = nil;
+      host_ = host;
+      port_ = port;
+      timeout_ = timeout;
+      logger_ = logger;
+    }
+  end
 end
 
 return
