@@ -22,7 +22,7 @@ local check_reply = function(response, field)
   end
 
   field = field or "Message"
-  if response and response.Response == "Success" then
+  if response and (response.Response == "Success" or response.Event)  then
     if response[field] then
       return tostring(response[field])
     else

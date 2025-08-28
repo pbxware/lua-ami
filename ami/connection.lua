@@ -6,6 +6,7 @@
 --------------------------------------------------------------------------------
 
 local socket = require "socket"
+local ssl = require "ssl"
 local ltn12 = require "ltn12"
 
 local assert, type, pairs = assert, type, pairs
@@ -42,6 +43,23 @@ local establish_connection = function(self)
   local result, err = sock:connect(self.host_, self.port_)
   if not result then
     return nil, err
+  end
+  
+  -- TLS
+  if self.tls_ then
+    local params = {
+        mode = "client",
+        protocol = "any",
+        verify = "none",
+        options = {
+          "all",
+          "no_sslv2",
+          "no_sslv3",
+          "no_tlsv1"
+        }
+    }
+    sock = assert( ssl.wrap(sock, params), 'tls wrap failed' )
+    assert(sock:dohandshake(), 'tls handshake failed')
   end
 
   -- Handshake with AMI
@@ -185,7 +203,7 @@ end
 -- @param timeout optional connection timeout
 -- @param logger  optional logger (function with print semantic)
 -- @return a connection object
-local make_connection = function(host, port, timeout, logger)
+local make_connection = function(host, port, timeout, tls, logger)
   assert(type(host) == "string", "host is not a string")
   assert(type(port) == "number", "port is not a number")
 
@@ -211,6 +229,7 @@ local make_connection = function(host, port, timeout, logger)
     port_ = port;
     timeout_ = timeout;
     logger_ = logger;
+    tls_ = tls;
   }
 end
 

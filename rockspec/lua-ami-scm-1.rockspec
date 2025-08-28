@@ -2,20 +2,20 @@ package = "lua-ami"
 version = "scm-1"
 source =
 {
-  url = "http://github.com/pbxware/lua-ami",
+  url = "https://dev.narayana.im/narayana/lua-ami",
   branch = "master"
 }
 description =
 {
   summary = "Library to access Asterisk Management Interface",
-  homepage = "http://github.com/pbxware/lua-ami",
+  homepage = "https://dev.narayana.im/narayana/lua-ami",
   license = "MIT/X11"
 }
 dependencies =
 {
   "lua >= 5.1",
   "luasocket >= 2.0.2",
-  "luuid >= 20100303"
+  "luasec >= 1.3.0",
 }
 build =
 {
@@ -24,7 +24,7 @@ build =
   {
     lua =
     {
-      ["ami"] = "ami.lua";
+      ["ami.init"] = "ami/init.lua";
       ["ami.connection"] = "ami/connection.lua";
       ["ami.login"] = "ami/login.lua";
       ["ami.utils"] = "ami/utils.lua";

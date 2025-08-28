@@ -26,7 +26,7 @@ local challenge_login = function(conn, user, secret)
 
   local result, err = conn:command("Challenge", { AuthType = "md5" })
   if not result then
-    return nil, "AMI: Can't get challenge:" .. err
+    return nil, "AMI: Can't get challenge:" .. tostring(err)
   end
   result, err  = conn:get_reply()
   if not result then
@@ -39,7 +39,8 @@ local challenge_login = function(conn, user, secret)
         {
           AuthType = "md5";
           Username = user;
-          Key = md5.sumhexa(result.Challenge .. secret)
+          Key = md5.sumhexa(result.Challenge .. secret);
+          Events = "off";
         }
       )
     if result then
@@ -69,6 +70,7 @@ local simple_login = function(conn, user, secret)
       {
         Username = user;
         Secret = secret;
+        Events = "off";
       }
     )
   if not result then
